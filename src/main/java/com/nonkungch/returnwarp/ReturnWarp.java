@@ -1,4 +1,4 @@
-package non.returnwarp;
+package nonkungch.returnwarp;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
