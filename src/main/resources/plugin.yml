@@ -1,0 +1,10 @@
+name: ReturnWarp
+main: nonkungch.returnwarp.ReturnWarp
+version: 2.5
+api-version: 1.21
+load: POSTWORLD
+commands:
+  vs:
+    description: เปิดเมนูเลือกโลก
+  back:
+    description: กลับมายังพิกัดก่อนวาร์ป
