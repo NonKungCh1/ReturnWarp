@@ -1,0 +1,58 @@
+name: Build and Release plugin
+
+on:
+  push:
+    branches: [ "main" ]
+    tags:
+      - "v*" # จะทำงานเมื่อมีการสร้าง tag ที่ขึ้นต้นด้วย v เช่น v1.0.0
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧱 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: 🔧 Build with Maven
+        run: mvn clean package
+
+      - name: 📦 Upload Plugin Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ReturnWarp
+          path: target/*.jar
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - name: 🧱 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: 🔧 Build Plugin Again for Release
+        run: mvn clean package
+
+      - name: 📤 Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
