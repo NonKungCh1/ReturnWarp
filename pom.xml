@@ -6,11 +6,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.nonkungch.ReturnWarp</groupId>
-    <artifactId>DialoguesEconomy</artifactId>
+    <artifactId>ReturnWarp</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>DialoguesEconomy</name>
+    <name>ReturnWarp</name>
     <description>A simple dialogue and economy system for Bukkit/Spigot.</description>
     <url>https://github.com/NonCraftStudio/DialoguesEconomy</url>
     <inceptionYear>2025</inceptionYear>
